@@ -3,8 +3,6 @@ import "./css/global.css";
 import React from "react";
 import Board from "./components/Board";
 import styled from "styled-components";
-import github from "./img/github.png";
-
 
 const Heading = styled.div`
   font-family: roboto;
@@ -33,14 +31,14 @@ function readFile(file) {
 }
 
 const LoadBoardFromFile= () =>{
-  function read(input) {
-    readFile(input.files[0])
+  function read() {
+    readFile(this.files[0])
       .then((content) => {
-        console.log(content);
+        alert(content);
       });
   }
   return (
-    <input type="file" onChange={read(this)}/>
+    <input type="file" onChange={read}/>
   );
 };
 
