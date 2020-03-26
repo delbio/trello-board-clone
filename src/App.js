@@ -5,25 +5,6 @@ import Board from "./components/Board";
 import styled from "styled-components";
 import github from "./img/github.png";
 
-function App() {
-  return (
-    <Container>
-      <Heading>
-        <a
-          target="_blank"
-          rel="noopener noreferrer"
-          href="https://github.com/tberghuis/trello-board-clone"
-        >
-          <img src={github} alt="Github" />
-        </a>
-        <span>Trello Board Clone</span>
-      </Heading>
-      <Board></Board>
-    </Container>
-  );
-}
-
-export default App;
 
 const Heading = styled.div`
   font-family: roboto;
@@ -33,16 +14,6 @@ const Heading = styled.div`
   font-weight: 600;
   font-size: 40px;
   position: relative;
-  & img {
-    position: absolute;
-    background-color: white;
-    left: 0;
-    top: 0;
-    border-radius: 3px;
-    height: 40px;
-    width: 40px;
-    padding: 3px;
-  }
 `;
 
 const Container = styled.div`
@@ -50,3 +21,38 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
 `;
+
+function readFile(file) {
+
+  return new Promise((resolve, reject) => {
+    let fr = new FileReader();
+    fr.onload = x=> resolve(fr.result);
+    fr.readAsText(file);
+  })
+
+}
+
+const LoadBoardFromFile= () =>{
+  function read(input) {
+    readFile(input.files[0])
+      .then((content) => {
+        console.log(content);
+      });
+  }
+  return (
+    <input type="file" onChange="read(this)"/>
+  );
+};
+
+function App() {
+  return (
+    <Container>
+      <Heading>
+        <LoadBoardFromFile></LoadBoardFromFile>
+      </Heading>
+      <Board></Board>
+    </Container>
+  );
+}
+
+export default App;
