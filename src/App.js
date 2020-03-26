@@ -40,7 +40,7 @@ const LoadBoardFromFile= () =>{
       });
   }
   return (
-    <input type="file" onChange="read(this)"/>
+    <input type="file" onChange={read(this)}/>
   );
 };
 
