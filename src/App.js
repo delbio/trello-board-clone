@@ -3,6 +3,7 @@ import "./css/global.css";
 import React from "react";
 import Board from "./components/Board";
 import styled from "styled-components";
+import { boardDataSubject } from "./state/boardData";
 
 const Heading = styled.div`
   font-family: roboto;
@@ -34,7 +35,8 @@ const LoadBoardFromFile= () =>{
   function read() {
     readFile(this.files[0])
       .then((content) => {
-        alert(content);
+        const d= JSON.parse(content);
+        boardDataSubject.next(d);
       });
   }
   return (
