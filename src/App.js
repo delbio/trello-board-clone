@@ -32,8 +32,9 @@ function readFile(file) {
 }
 
 const LoadBoardFromFile= () =>{
-  function read() {
-    readFile(this.files[0])
+  function read(e) {
+    let files= e.target.files;
+    readFile(files[0])
       .then((content) => {
         const d= JSON.parse(content);
         boardDataSubject.next(d);
