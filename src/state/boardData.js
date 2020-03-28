@@ -13,6 +13,10 @@ export function exportBoardData() {
   return { ...boardData };
 }
 
+export function resetBoardData() {
+  boardDataSubject.next({});
+}
+
 // TODO I should generalise this function (DRY)
 export const reorderListPosition = (initialPosition, finalPosition) => {
   Object.values(boardData).forEach(list => {

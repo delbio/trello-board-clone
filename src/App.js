@@ -3,7 +3,11 @@ import "./css/global.css";
 import React from "react";
 import Board from "./components/Board";
 import styled from "styled-components";
-import { boardDataSubject, exportBoardData } from "./state/boardData";
+import {
+  boardDataSubject,
+  exportBoardData,
+  resetBoardData
+} from "./state/boardData";
 import { saveAs } from 'file-saver';
 
 const Heading = styled.div`
@@ -25,6 +29,8 @@ const Container = styled.div`
 function readFile(file) {
 
   return new Promise((resolve, reject) => {
+    if (!file) return reject();
+
     let fr = new FileReader();
     fr.onload = x=> resolve(fr.result);
     fr.readAsText(file);
@@ -35,6 +41,7 @@ function readFile(file) {
 const LoadBoardFromFile= () =>{
   function read(e) {
     let files= e.target.files;
+    if (!files) return
     readFile(files[0])
       .then((content) => {
         const d= JSON.parse(content);
@@ -65,6 +72,13 @@ const ExportBoardButton= () => {
   );
 
 };
+const ResetBoardButton= () => {
+  return (
+    <button onClick={resetBoardData}>
+      Reset
+    </button>
+  );
+};
 
 function App() {
   return (
@@ -72,6 +86,7 @@ function App() {
       <Heading>
         <LoadBoardFromFile></LoadBoardFromFile>
         <ExportBoardButton></ExportBoardButton>
+        <ResetBoardButton></ResetBoardButton>
       </Heading>
       <Board></Board>
     </Container>
