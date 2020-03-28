@@ -6,12 +6,12 @@
   "dependencies": {
     "file-saver": "^2.0.2",
     "localforage": "^1.7.3",
-    "react": "^16.10.2",
+    "react": "^16.13.1",
     "react-beautiful-dnd": "^11.0.5",
-    "react-dom": "^16.10.2",
+    "react-dom": "^16.13.1",
     "react-scripts": "3.2.0",
-    "rxjs": "^6.5.3",
-    "styled-components": "^4.4.0",
+    "rxjs": "^6.5.4",
+    "styled-components": "^4.4.1",
     "uuidv4": "^5.0.1"
   },
   "scripts": {
@@ -37,6 +37,6 @@
     ]
   },
   "devDependencies": {
-    "gh-pages": "^2.1.1"
+    "gh-pages": "^2.2.0"
   }
 }
