@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "http://tberghuis.github.io/trello-board-clone",
   "dependencies": {
+    "file-saver": "^2.0.2",
     "localforage": "^1.7.3",
     "react": "^16.10.2",
     "react-beautiful-dnd": "^11.0.5",

@@ -9,6 +9,10 @@ boardDataSubject.subscribe(_boardData => {
   boardData = _boardData;
 });
 
+export function exportBoardData() {
+  return { ...boardData };
+}
+
 // TODO I should generalise this function (DRY)
 export const reorderListPosition = (initialPosition, finalPosition) => {
   Object.values(boardData).forEach(list => {

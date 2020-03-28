@@ -3,7 +3,8 @@ import "./css/global.css";
 import React from "react";
 import Board from "./components/Board";
 import styled from "styled-components";
-import { boardDataSubject } from "./state/boardData";
+import { boardDataSubject, exportBoardData } from "./state/boardData";
+import { saveAs } from 'file-saver';
 
 const Heading = styled.div`
   font-family: roboto;
@@ -45,11 +46,32 @@ const LoadBoardFromFile= () =>{
   );
 };
 
+
+const ExportBoardButton= () => {
+  function saveToFile() {
+    const content= JSON.stringify(
+      exportBoardData(),
+      null,
+      2
+    );
+    var blob = new Blob([content], {type: "text/plain;charset=utf-8"});
+    saveAs(blob, "board.json");
+  }
+
+  return (
+    <button onClick={saveToFile}>
+      Export
+    </button>
+  );
+
+};
+
 function App() {
   return (
     <Container>
       <Heading>
         <LoadBoardFromFile></LoadBoardFromFile>
+        <ExportBoardButton></ExportBoardButton>
       </Heading>
       <Board></Board>
     </Container>
